@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    environment:
+      EDITOR: vim
+    command: bash -c 'rm tmp/pids/server.pid 2>/dev/null; bin/rails s -b "0.0.0.0"'
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/usr/src/app
+      - bundle_cache:/usr/local/lib/ruby/gems/2.7.0
+
+volumes:
+  bundle_cache:
