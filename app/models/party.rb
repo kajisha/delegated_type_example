@@ -1,3 +1,3 @@
 class Party < ApplicationRecord
-  belongs_to :partyable, polymorphic: true
+  delegated_type :partyable, types: %w(Company Department Employee)
 end
