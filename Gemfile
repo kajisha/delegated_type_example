@@ -10,7 +10,7 @@ gem 'puma'
 gem 'sqlite3'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
