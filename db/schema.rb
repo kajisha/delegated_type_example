@@ -10,6 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_10_01_061030) do
+
+  create_table "parties", force: :cascade do |t|
+    t.string "partyable_type", null: false
+    t.integer "partyable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partyable_type", "partyable_id"], name: "index_parties_on_partyable_type_and_partyable_id"
+  end
 
 end
