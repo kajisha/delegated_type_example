@@ -30,4 +30,24 @@ RSpec.describe Accountability, type: :model do
       expect(agile_dept.employees).to eq [wat_aro]
     end
   end
+
+  describe '会社に所属している社員について' do
+    let(:esminc) { create(:company, name: '永和システムマネジメント') }
+    let(:company) { create(:party, partyable: esminc) }
+    let(:agile_dept) { create(:department, name: 'アジャイル事業部') }
+    let(:department) { create(:party, partyable: agile_dept) }
+    let(:agile_dept) { create(:department, name: 'アジャイル事業部') }
+    let(:department) { create(:party, partyable: agile_dept) }
+    let(:wat_aro) { create(:employee, name: 'wat-aro', email: 'wat-aro@example.com') }
+    let(:employee) { create(:party, partyable: wat_aro) }
+
+    before do
+      create(:accountability, accountability_type: :organization_structure, commissioner: department, responsible: company)
+      create(:accountability, accountability_type: :belong, commissioner: employee, responsible: department)
+    end
+
+    it '永和システムマネジメントにわたろーは所属している' do
+      expect(esminc.employees).to eq [wat_aro]
+    end
+  end
 end
